@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabab Ahmed - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #fff;
+        }
+
+        /* Side Navigation */
+        .sidenav {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100vh;
+            width: 280px;
+            background: linear-gradient(180deg, #1e3a8a 0%, #3b82f6 100%);
+            padding: 40px 30px;
+            z-index: 1000;
+            box-shadow: 4px 0 20px rgba(0,0,0,0.1);
+        }
+
+        .sidenav .logo {
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        .sidenav .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid white;
+            display: block;
+            margin: 0 auto 20px;
+            object-fit: cover;
+        }
+
+        .sidenav h3 {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .sidenav p {
+            color: rgba(255,255,255,0.9);
+            text-align: center;
+            font-size: 0.9rem;
+            margin-bottom: 40px;
+        }
+
+        .sidenav nav ul {
+            list-style: none;
+        }
+
+        .sidenav nav ul li {
+            margin-bottom: 20px;
+        }
+
+        .sidenav nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            display: block;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .sidenav nav ul li a:hover {
+            background: rgba(255,255,255,0.2);
+            padding-left: 30px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            padding: 40px;
+        }
+
+        /* Hero Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #3122fb 0%, #261a05 100%);
+            padding: 80px 60px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+
+        .hero-banner h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .hero-banner .tagline {
+            font-size: 1.5rem;
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .hero-banner .student-info {
+            background: rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 10px;
+            display: inline-block;
+            color: white;
+            font-size: 1rem;
+            position: relative;
+        }
+
+        /* Section Styling */
+        section {
+            background: white;
+            padding: 50px;
+            margin-bottom: 30px;
+            border-radius: 15px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            color: #1e3a8a;
+            margin-bottom: 35px;
+            padding-bottom: 15px;
+            border-bottom: 4px solid #fbbf24;
+            display: inline-block;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 5px solid #3b82f6;
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+        }
+
+        .info-item strong {
+            display: block;
+            color: #1e3a8a;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        .info-item span {
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        /* Skills Grid */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .skill-item {
+            background: #f8fafc;
+            padding: 25px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .skill-item h3 {
+            color: #1e3a8a;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            height: 10px;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #3b82f6, #1e3a8a);
+            height: 100%;
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        /* Projects Grid */
+        .projects-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .project-box {
+            background: #f8fafc;
+            padding: 30px;
+            border-radius: 12px;
+            border-top: 4px solid #fbbf24;
+            transition: all 0.3s;
+        }
+
+        .project-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .project-box h3 {
+            color: #17337d;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .project-box p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-badge {
+            background: #2e58c9;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+        }
+
+        /* Hobbies */
+        .hobbies-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .hobby-box {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 180px;
+            transition: all 0.3s;
+        }
+
+        .hobby-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.4);
+        }
+
+        .hobby-box .icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        /* Contact Form */
+        .contact-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .form-field {
+            margin-bottom: 25px;
+        }
+
+        .form-field label {
+            display: block;
+            color: #1e3a8a;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1rem;
+        }
+
+        .form-field input,
+        .form-field textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-field input:focus,
+        .form-field textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .form-field textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+            color: white;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(251, 191, 36, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3a8a;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 15px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .sidenav {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .projects-container,
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-banner h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Side Navigation -->
+    <div class="sidenav">
+        
+        <img src="img.jpg" alt="Sabab Ahmed" class="profile-img">
+        <h3>Sabab Ahmed</h3>
+        <p>Full Stack Developer</p>
+        
+        <nav>
+            <ul>
+                <li><a href="#about">📋 About</a></li>
+                <li><a href="#skills">⚡ Skills</a></li>
+                <li><a href="#projects">💼 Projects</a></li>
+                <li><a href="#hobbies">🎯 Hobbies</a></li>
+                <li><a href="#contact">📧 Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Banner -->
+        <div class="hero-banner">
+            <h1>Hello, I'm Sabab Ahmed</h1>
+            <p class="tagline">Final Year Student & Passionate Developer</p>
+            <div class="student-info">
+                🎓 Daffodil International University | Section: 63-L | ID: 0242220005101562
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Hi! I'm Sabab Ahmed, a dedicated final year student at Daffodil International University with a passion for creating innovative web solutions. My journey in technology has been driven by curiosity and a desire to build applications that make a difference.</p>
+                    <p>I specialize in full-stack development and have hands-on experience with modern web technologies. From designing responsive user interfaces to building robust backend systems, I enjoy every aspect of the development process.</p>
+                    <p>My approach combines technical expertise with creative problem-solving, allowing me to tackle complex challenges and deliver high-quality results.</p>
+                </div>
+                <div class="info-box">
+                    <div class="info-item">
+                        <strong>🎓 UNIVERSITY</strong>
+                        <span>Daffodil International University</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>📚 SECTION</strong>
+                        <span>63-L</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>🆔 STUDENT ID</strong>
+                        <span>0242220005101562</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>💼 STATUS</strong>
+                        <span>Final Year Student</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <h2>My Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <h3>HTML & CSS</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 92%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>JavaScript</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 88%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>React</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>Node.js</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 82%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>Python</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 80%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>MySQL</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 86%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>MongoDB</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 83%"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <h3>Git & GitHub</h3>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <h2>My Projects</h2>
+            <div class="projects-container">
+                <div class="project-box">
+                    <h3>Social Media Dashboard</h3>
+                    <p>A comprehensive social media analytics platform with real-time data visualization and user engagement metrics.</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">MongoDB</span>
+                    </div>
+                </div>
+                <div class="project-box">
+                    <h3>Online Learning Platform</h3>
+                    <p>An interactive e-learning website with video courses, quizzes, and certification system.</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">PHP</span>
+                        <span class="tech-badge">MySQL</span>
+                        <span class="tech-badge">JavaScript</span>
+                    </div>
+                </div>
+                <div class="project-box">
+                    <h3>Restaurant Management</h3>
+                    <p>Full-featured restaurant management with table booking, menu management, and billing system.</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Express</span>
+                        <span class="tech-badge">PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="project-box">
+                    <h3>Fitness Tracker App</h3>
+                    <p>Mobile-responsive fitness tracking with workout plans, calorie counter, and progress charts.</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">JavaScript</span>
+                        <span class="tech-badge">CSS</span>
+                        <span class="tech-badge">API</span>
+                    </div>
+                </div>
+                <div class="project-box">
+                    <h3>Chat Application</h3>
+                    <p>Real-time messaging platform with group chats, file sharing, and notification system.</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">Socket.io</span>
+                        <span class="tech-badge">MongoDB</span>
+                    </div>
+                </div>
+                <div class="project-box">
+                    <h3>Portfolio Generator</h3>
+                    <p>Automated portfolio builder with customizable templates and easy content management.</p>
+                    <div class="tech-badges">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Firebase</span>
+                        <span class="tech-badge">Tailwind</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies Section -->
+        <section id="hobbies">
+            <h2>My Hobbies</h2>
+            <div class="hobbies-container">
+                <div class="hobby-box">
+                    <div class="icon">💻</div>
+                    <div>Programming</div>
+                </div>
+                <div class="hobby-box">
+                    <div class="icon">🎮</div>
+                    <div>Gaming</div>
+                </div>
+                <div class="hobby-box">
+                    <div class="icon">📖</div>
+                    <div>Reading</div>
+                </div>
+                <div class="hobby-box">
+                    <div class="icon">🏏</div>
+                    <div>Cricket</div>
+                </div>
+                <div class="hobby-box">
+                    <div class="icon">🎬</div>
+                    <div>Movies</div>
+                </div>
+                <div class="hobby-box">
+                    <div class="icon">🎧</div>
+                    <div>Music</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2>Contact Me</h2>
+            <div class="contact-container">
+                <p style="text-align: center; color: #666; margin-bottom: 40px; font-size: 1.1rem;">
+                    Have a project in mind or want to collaborate? Feel free to reach out!
+                </p>
+                <form action="mailto:sabab@example.com" method="post" enctype="text/plain">
+                    <div class="form-field">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="email">Your Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" placeholder="What is this about?" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+                    </div>
+                    <button type="submit" class="submit-button">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Sabab Ahmed. All Rights Reserved.</p>
+            <p style="margin-top: 10px; opacity: 0.9;">Daffodil International University | Section 63-L</p>
+        </footer>
+    </div>
+</body>
+</html>
